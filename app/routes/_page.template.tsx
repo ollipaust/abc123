@@ -177,6 +177,9 @@ export default function __PAGE_COMPONENT__(): JSX.Element {
                     <p>
                         {appConfig.footerText.replace('2024', new Date().getFullYear().toString())}
                     </p>
+                    <p className='mt-2 text-sm text-gray-600'>
+                        Built with <a href='https://decimal.tools' target='_blank' rel='noopener noreferrer' className='transition-colors' style={{ color: appConfig.primaryColor }}>Decimal.tools</a>
+                    </p>
                 </footer>
             </div>
         </motion.div>
