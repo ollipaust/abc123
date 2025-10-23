@@ -64,7 +64,12 @@ export default function Index(): JSX.Element {
                         to='/'
                         className='inline-flex items-center gap-3'
                     >
-                        <span className='text-2xl font-extrabold tracking-tight text-slate-100 text-shadow-md shadow-slate-800'>
+                        <span
+                            className='text-2xl font-extrabold tracking-tight text-slate-100 text-shadow-md'
+                            style={{
+                                textShadow: `0 2px 8px ${primary}40`
+                            }}
+                        >
                             {appConfig.siteName}
                         </span>
                     </Link>
@@ -74,7 +79,16 @@ export default function Index(): JSX.Element {
                                 <li key={href}>
                                     <Link
                                         to={href}
-                                        className='text-lg text-slate-200 hover:text-slate-700 transition-all ease-linear duration-300'
+                                        className='text-lg text-slate-200 transition-all ease-linear duration-300 hover:text-slate-700'
+                                        style={{
+                                            '--hover-color': primary,
+                                        } as React.CSSProperties}
+                                        onMouseEnter={(e) => {
+                                            e.currentTarget.style.color = primary;
+                                        }}
+                                        onMouseLeave={(e) => {
+                                            e.currentTarget.style.color = '';
+                                        }}
                                     >
                                         {label}
                                     </Link>
@@ -122,19 +136,34 @@ export default function Index(): JSX.Element {
                             {/* LEFT COLUMN */}
                             <div className='lg:col-span-7 xl:col-span-8'>
                                 {appConfig.heroBadge && (
-                                    <span className='mb-4 inline-block rounded-full bg-emerald-100 px-3 py-1 text-sm font-semibold text-emerald-700'>
+                                    <span
+                                        className='mb-4 inline-block rounded-full px-3 py-1 text-sm font-semibold'
+                                        style={{
+                                            backgroundColor: `${primary}20`,
+                                            color: primary,
+                                            border: `1px solid ${primary}40`
+                                        }}
+                                    >
                                         {appConfig.heroBadge}
                                     </span>
                                 )}
 
                                 <h1 className='text-pretty text-5xl font-display font-extrabold tracking-tight sm:text-6xl lg:text-7xl'>
-                                    <span className='bg-gradient-to-r from-gray-900 to-black bg-clip-text text-transparent drop-shadow-md'>
+                                    <span
+                                        className='bg-clip-text text-transparent drop-shadow-md'
+                                        style={{
+                                            backgroundImage: `linear-gradient(to right, ${primary}, #1e293b)`,
+                                        }}
+                                    >
                                         {appConfig.heroTitle}
                                     </span>
                                 </h1>
 
                                 {appConfig.heroSubtitle && (
-                                    <p className='mt-4 text-2xl text-gray-900'>
+                                    <p
+                                        className='mt-4 text-2xl font-semibold'
+                                        style={{ color: primary }}
+                                    >
                                         {appConfig.heroSubtitle}
                                     </p>
                                 )}
@@ -151,7 +180,11 @@ export default function Index(): JSX.Element {
                                     >
                                         <Link
                                             to={appConfig.heroCTALink as string}
-                                            className='inline-flex items-center gap-2 rounded-xl bg-emerald-500 px-6 py-3 text-lg font-semibold text-white shadow-md'
+                                            className='inline-flex items-center gap-2 rounded-xl px-6 py-3 text-lg font-semibold text-white shadow-lg transition-shadow hover:shadow-xl'
+                                            style={{
+                                                backgroundColor: primary,
+                                                boxShadow: `0 4px 14px 0 ${primary}40`
+                                            }}
                                         >
                                             <ArrowRight className='h-5 w-5' />
                                             {appConfig.heroCTA}
@@ -165,10 +198,13 @@ export default function Index(): JSX.Element {
                                         <dl className='mt-10 grid grid-cols-2 gap-6 sm:grid-cols-3 text-base text-gray-800'>
                                             {appConfig.heroStats.map((stat, idx) => (
                                                 <div key={idx}>
-                                                    <dt className='font-semibold text-gray-900'>
+                                                    <dt
+                                                        className='font-semibold'
+                                                        style={{ color: primary }}
+                                                    >
                                                         {stat.label}
                                                     </dt>
-                                                    <dd>{stat.value}</dd>
+                                                    <dd className='text-gray-900 font-bold'>{stat.value}</dd>
                                                 </div>
                                             ))}
                                         </dl>
@@ -192,7 +228,13 @@ export default function Index(): JSX.Element {
                             className='overflow-hidden rounded-2xl border border-white/30 bg-white/30 p-8 shadow-lg backdrop-blur-2xl'
                         >
                             {sections.length > 0 ? (
-                                <div className='prose prose-lg max-w-none prose-a:text-gray-900'>
+                                <div
+                                    className='prose prose-lg max-w-none'
+                                    style={{
+                                        '--tw-prose-links': primary,
+                                        '--tw-prose-headings': primary,
+                                    } as React.CSSProperties}
+                                >
                                     {sections.map(section => (
                                         <article key={section.id}>
                                             <div
